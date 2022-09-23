@@ -75,8 +75,12 @@
             <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
         </Reference>
         <Reference Include="System.Xml.Linq" />
+        <Reference Include="TsaBackEndInfrastructure, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\TsaBackEndInfrastructure.1.1.2.0\lib\net48\TsaBackEndInfrastructure.dll</HintPath>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Fake\FakeDateTimeManager.cs" />
         <Compile Include="Model\TestData.cs" />
         <Compile Include="Model\TestDetail.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
