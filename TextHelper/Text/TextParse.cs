@@ -5,7 +5,7 @@ namespace TextHelper.Text
     /// <summary>
     /// 文字替換物件
     /// </summary>
-    internal abstract class TextParse : ITextParse
+    public abstract class TextParse : ITextParse
     {
         /// <summary>
         /// 欲替換文字

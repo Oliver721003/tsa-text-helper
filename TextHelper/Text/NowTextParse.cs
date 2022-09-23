@@ -7,7 +7,7 @@ namespace TextHelper.Text
     /// <summary>
     /// 現在日期
     /// </summary>
-    internal class NowTextParse : TextParse
+    public class NowTextParse : TextParse
     {
         /// <summary>
         /// 建構式
@@ -15,14 +15,14 @@ namespace TextHelper.Text
         public NowTextParse()
         {
             var text = DateTime.Now;
-            ReplaceText = text.ToString();
+            ReplaceText = text.ToString(CultureInfo.InvariantCulture);
         }
 
         /// <summary>
         /// 建構式
         /// </summary>
         /// <param name="datetimeManager"></param>
-        internal NowTextParse(IDateTimeManager datetimeManager)
+        public NowTextParse(IDateTimeManager datetimeManager)
         {
             var text = datetimeManager.Now;
             ReplaceText = text.ToString(CultureInfo.InvariantCulture);

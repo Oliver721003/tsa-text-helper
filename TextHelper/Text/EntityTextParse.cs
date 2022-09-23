@@ -6,7 +6,7 @@ namespace TextHelper.Text
     /// 實體資料文字解析
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal class EntityTextParse<T> : TextParse
+    public class EntityTextParse<T> : TextParse
     {
         /// <summary>
         /// 建構式

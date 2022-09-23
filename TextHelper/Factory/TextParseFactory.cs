@@ -1,3 +1,5 @@
+using System;
+using TextHelper.Configuration;
 using TextHelper.Interface;
 using TextHelper.Text;
 using TsaBackEndInfrastructure.Utils;
@@ -19,14 +21,16 @@ namespace TextHelper.Factory
         public static ITextParse CreateInstance<T>(string content, T data, IDateTimeManager dateTimeManager = null)
             where T : class
         {
-            switch (content)
+            var type = TextParserSettingFactory.GetType(content);
+
+            if (type != null)
             {
-                case "NOW":
-                case "Now":
-                    return dateTimeManager == null ? new NowTextParse() : new NowTextParse(dateTimeManager);
-                default:
-                    return new EntityTextParse<T>(content, data);
+                return dateTimeManager == null
+                    ? (ITextParse)Activator.CreateInstance(type)
+                    : (ITextParse)Activator.CreateInstance(type, dateTimeManager);
             }
+
+            return new EntityTextParse<T>(content, data);
         }
     }
 }

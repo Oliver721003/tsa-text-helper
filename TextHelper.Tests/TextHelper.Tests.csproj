@@ -88,6 +88,9 @@
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
+      <None Include="textParser.config">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\TextHelper\TextHelper.csproj">

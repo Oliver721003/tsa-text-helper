@@ -3,7 +3,7 @@ namespace TextHelper.Interface
     /// <summary>
     /// 格式轉換介面
     /// </summary>
-    internal interface ITextParse
+    public interface ITextParse
     {
         /// <summary>
         /// 文字替換

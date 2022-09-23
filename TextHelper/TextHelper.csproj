@@ -34,7 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +48,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\TextParserCollection.cs" />
+    <Compile Include="Configuration\TextParserElement.cs" />
+    <Compile Include="Configuration\TextParserSettingFactory.cs" />
+    <Compile Include="Configuration\TextParserSection.cs" />
     <Compile Include="Factory\TextParseFactory.cs" />
     <Compile Include="Interface\ITextParse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
