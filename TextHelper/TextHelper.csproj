@@ -50,6 +50,7 @@
     <Compile Include="Interface\ITextParse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextParseService.cs" />
+    <Compile Include="Text\EntityTextParse.cs" />
     <Compile Include="Text\NowTextParse.cs" />
     <Compile Include="Text\TextParse.cs" />
   </ItemGroup>

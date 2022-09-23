@@ -19,7 +19,14 @@ namespace TextHelper.Factory
         public static ITextParse CreateInstance<T>(string content, T data, IDateTimeManager dateTimeManager = null)
             where T : class
         {
-            return dateTimeManager == null ? new NowTextParse() : new NowTextParse(dateTimeManager);
+            switch (content)
+            {
+                case "NOW":
+                case "Now":
+                    return dateTimeManager == null ? new NowTextParse() : new NowTextParse(dateTimeManager);
+                default:
+                    return new EntityTextParse<T>(content, data);
+            }
         }
     }
 }
