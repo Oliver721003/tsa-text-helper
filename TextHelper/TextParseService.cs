@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TextHelper.Factory;
 using TsaBackEndInfrastructure.Utils;
 
@@ -44,8 +45,10 @@ namespace TextHelper
                 var start = result.IndexOf("#[", StringComparison.Ordinal);
                 var end = result.IndexOf("]#", StringComparison.Ordinal);
                 var content = result.Substring(start + 2, end - start - 2);
+                var filter = content.Split('|').ToList();
+                var formats = filter.Skip(1).Select(TextFormatFactory.CreateInstance);
 
-                var textParse = TextParseFactory.CreateInstance(content, data, _datetimeManager);
+                var textParse = TextParseFactory.CreateInstance(filter[0].Trim(), formats, data, _datetimeManager);
                 result = textParse.Replace(result, content);
             }
 

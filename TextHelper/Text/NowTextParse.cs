@@ -1,5 +1,6 @@
 using System;
-using System.Globalization;
+using System.Collections.Generic;
+using TextHelper.Interface;
 using TsaBackEndInfrastructure.Utils;
 
 namespace TextHelper.Text
@@ -12,20 +13,22 @@ namespace TextHelper.Text
         /// <summary>
         /// 建構式
         /// </summary>
-        public NowTextParse()
+        /// <param name="formats">格式轉換</param>
+        public NowTextParse(IEnumerable<ITextFormat> formats)
+            : base(formats)
         {
-            var text = DateTime.Now;
-            ReplaceText = text.ToString(CultureInfo.InvariantCulture);
+            ReplaceText = Format(DateTime.Now).ToString();
         }
 
         /// <summary>
         /// 建構式
         /// </summary>
+        /// <param name="formats">格式轉換</param>
         /// <param name="datetimeManager"></param>
-        public NowTextParse(IDateTimeManager datetimeManager)
+        public NowTextParse(IEnumerable<ITextFormat> formats, IDateTimeManager datetimeManager)
+            : base(formats)
         {
-            var text = datetimeManager.Now;
-            ReplaceText = text.ToString(CultureInfo.InvariantCulture);
+            ReplaceText = Format(datetimeManager.Now).ToString();
         }
     }
 }

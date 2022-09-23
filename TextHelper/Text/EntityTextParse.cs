@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using TextHelper.Interface;
 
 namespace TextHelper.Text
 {
@@ -11,11 +13,13 @@ namespace TextHelper.Text
         /// <summary>
         /// 建構式
         /// </summary>
+        /// <param name="formats">格式轉換</param>
         /// <param name="property">屬性名稱</param>
         /// <param name="data">資料實體</param>
-        public EntityTextParse(string property, T data)
+        public EntityTextParse(IEnumerable<ITextFormat> formats, string property, T data)
+            : base(formats)
         {
-            var text = GetValue(0, property, data);
+            var text = Format(GetValue(0, property, data));
             ReplaceText = text?.ToString() ?? "";
         }
 

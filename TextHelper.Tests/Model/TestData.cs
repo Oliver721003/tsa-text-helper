@@ -8,6 +8,8 @@ namespace TextHelper.Tests.Model
 
         public string Name { get; set; }
 
+        public int Price { get; set; }
+
         public TestDetail Detail { get; set; }
 
         public List<TestDetail> Details { get; set; }

@@ -52,7 +52,12 @@
     <Compile Include="Configuration\TextParserElement.cs" />
     <Compile Include="Configuration\TextParserSettingFactory.cs" />
     <Compile Include="Configuration\TextParserSection.cs" />
+    <Compile Include="Factory\TextFormatFactory.cs" />
     <Compile Include="Factory\TextParseFactory.cs" />
+    <Compile Include="Format\CurrencyFormat.cs" />
+    <Compile Include="Format\DateFormat.cs" />
+    <Compile Include="Format\TextFormat.cs" />
+    <Compile Include="Interface\ITextFormat.cs" />
     <Compile Include="Interface\ITextParse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextParseService.cs" />

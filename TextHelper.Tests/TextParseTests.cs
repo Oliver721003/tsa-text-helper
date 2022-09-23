@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using FluentAssertions;
 using NUnit.Framework;
 using TextHelper.Tests.Fake;
@@ -31,7 +30,20 @@ namespace TextHelper.Tests
 
             var actual = service.Parse("日期: #[Now]#", data);
 
-            actual.Should().Be($"日期: {now.ToString(CultureInfo.InvariantCulture)}");
+            actual.Should().Be($"日期: {now.ToString()}");
+        }
+
+        [Test]
+        public void 當傳入內容為Now_且格式為yyyMMdd_應回傳當下日期()
+        {
+            var data = new TestData();
+            var now = DateTime.Now;
+            var datetimeManager = new FakeDateTimeManager(now);
+            var service = new TextParseService(datetimeManager);
+
+            var actual = service.Parse("日期: #[Now | date: yyyyMMdd ]#", data);
+
+            actual.Should().Be($"日期: {now:yyyyMMdd}");
         }
 
         [Test]
@@ -56,6 +68,17 @@ namespace TextHelper.Tests
             var service = new TextParseService();
             var actual = service.Parse("動態資料: [#[Id]#] #[Name]# - #[Detail.Summary]#", data);
             actual.Should().Be("動態資料: [001] 測試 - 明細內容");
+        }
+
+        [Test]
+        public void 當傳入內容有金額格式_應內容替代後回傳()
+        {
+            var data = new TestData { Id = "001", Name = "測試", Price = 1000 };
+            var service = new TextParseService();
+
+            var actual = service.Parse("動態資料: #[Id]# - #[Name]#, #[Price | currency:zh-TW ]#", data);
+
+            actual.Should().Be("動態資料: 001 - 測試, $1,000.00");
         }
     }
 }
