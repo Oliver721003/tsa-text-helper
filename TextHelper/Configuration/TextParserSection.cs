@@ -14,5 +14,13 @@ namespace TextHelper.Configuration
         [ConfigurationCollection(typeof(TextParserCollection),
             CollectionType = ConfigurationElementCollectionType.BasicMap, AddItemName = "add")]
         public TextParserCollection TextParser => base["parsers"] as TextParserCollection;
+
+        /// <summary>
+        /// 文字格式化組態定義
+        /// </summary>
+        [ConfigurationProperty("formats", IsRequired = true)]
+        [ConfigurationCollection(typeof(TextParserCollection),
+            CollectionType = ConfigurationElementCollectionType.BasicMap, AddItemName = "add")]
+        public TextParserCollection Format => base["formats"] as TextParserCollection;
     }
 }

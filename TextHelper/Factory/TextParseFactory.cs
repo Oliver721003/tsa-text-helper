@@ -24,7 +24,7 @@ namespace TextHelper.Factory
             IDateTimeManager dateTimeManager = null)
             where T : class
         {
-            var type = TextParserSettingFactory.GetType(content);
+            var type = TextParserSettingFactory.GetTextParser(content);
 
             if (type != null)
             {

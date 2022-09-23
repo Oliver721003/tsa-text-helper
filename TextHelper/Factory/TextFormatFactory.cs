@@ -1,5 +1,5 @@
 using System;
-using TextHelper.Format;
+using TextHelper.Configuration;
 using TextHelper.Interface;
 
 namespace TextHelper.Factory
@@ -17,18 +17,15 @@ namespace TextHelper.Factory
         public static ITextFormat CreateInstance(string text)
         {
             var config = text.Split(':');
-            var name = config[0].Trim();
-            var type = config[1].Trim();
+            var formatType = config[0].Trim();
+            var format = config[1].Trim();
 
-            switch (name)
-            {
-                case "date":
-                    return new DateFormat(type);
-                case "currency":
-                    return new CurrencyFormat(type);
-                default:
-                    throw new Exception("轉換格式輸入錯誤");
-            }
+            var type = TextParserSettingFactory.GetTextFormat(formatType);
+
+            if (type == null)
+                throw new Exception("轉換格式輸入錯誤");
+
+            return (ITextFormat)Activator.CreateInstance(type, format);
         }
     }
 }

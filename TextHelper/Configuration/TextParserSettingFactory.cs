@@ -14,15 +14,31 @@ namespace TextHelper.Configuration
         /// </summary>
         /// <param name="type">文字解析類型</param>
         /// <returns></returns>
-        public static Type GetType(string type)
+        public static Type GetTextParser(string type)
         {
             var section = GetSectionFromConfig() ?? GetSectionFromCustom();
 
             if (section == null)
                 throw new Exception("App.config / Web.config / textParser.config 找不到 textParser 定義區塊");
 
-            var textParserSetting = section.TextParser[type];
-            return textParserSetting == null ? null : Type.GetType(textParserSetting.Library);
+            var setting = section.TextParser[type];
+            return setting == null ? null : Type.GetType(setting.Library);
+        }
+
+        /// <summary>
+        /// 文字格式化組態取得
+        /// </summary>
+        /// <param name="type">文字解析類型</param>
+        /// <returns></returns>
+        public static Type GetTextFormat(string type)
+        {
+            var section = GetSectionFromConfig() ?? GetSectionFromCustom();
+
+            if (section == null)
+                throw new Exception("App.config / Web.config / textParser.config 找不到 textParser 定義區塊");
+
+            var setting = section.Format[type];
+            return setting == null ? null : Type.GetType(setting.Library);
         }
 
         /// <summary>
