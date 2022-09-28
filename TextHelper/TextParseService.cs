@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TextHelper.Factory;
+using TextHelper.Interface;
 using TsaBackEndInfrastructure.Utils;
 
 namespace TextHelper
@@ -32,11 +34,38 @@ namespace TextHelper
         /// <summary>
         /// 文字解析
         /// </summary>
+        /// <param name="context">文字內容</param>
+        /// <param name="parameters">非實體資料參數</param>
+        public string Parse(string context, Dictionary<string, string> parameters)
+        {
+            return Parse(
+                context,
+                (content, formats) => TextParseFactory.CreateInstance(content, formats, parameters)
+            );
+        }
+
+        /// <summary>
+        /// 文字解析
+        /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="context">文字內容</param>
         /// <param name="data">資料實體</param>
-        public string Parse<T>(string context, T data)
+        /// <param name="parameters">非實體資料參數</param>
+        public string Parse<T>(string context, T data, Dictionary<string, string> parameters)
             where T : class
+        {
+            return Parse(
+                context,
+                (content, formats) => TextParseFactory.CreateInstance(content, formats, data, parameters)
+            );
+        }
+
+        /// <summary>
+        /// 文字解析
+        /// </summary>
+        /// <param name="context">文字內容</param>
+        /// <param name="getTextParse">文字解析取得方法</param>
+        private static string Parse(string context, Func<string, List<ITextFormat>, ITextParse> getTextParse)
         {
             var result = context;
 
@@ -45,10 +74,10 @@ namespace TextHelper
                 var start = result.IndexOf("#[", StringComparison.Ordinal);
                 var end = result.IndexOf("]#", StringComparison.Ordinal);
                 var content = result.Substring(start + 2, end - start - 2);
-                var filter = content.Split('|').ToList();
-                var formats = filter.Skip(1).Select(TextFormatFactory.CreateInstance);
+                var filter = content.Split('|');
+                var formats = filter.ToList().Skip(1).Select(TextFormatFactory.CreateInstance).ToList();
 
-                var textParse = TextParseFactory.CreateInstance(filter[0].Trim(), formats, data, _datetimeManager);
+                var textParse = getTextParse(filter[0].Trim(), formats);
                 result = textParse.Replace(result, content);
             }
 

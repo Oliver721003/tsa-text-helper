@@ -13,13 +13,13 @@ namespace TextHelper.Text
         /// <summary>
         /// 建構式
         /// </summary>
-        /// <param name="formats">格式轉換</param>
-        /// <param name="property">屬性名稱</param>
+        /// <param name="propertyName">屬性名稱</param>
         /// <param name="data">資料實體</param>
-        public EntityTextParse(IEnumerable<ITextFormat> formats, string property, T data)
+        /// <param name="formats">格式轉換</param>
+        public EntityTextParse(string propertyName, T data, IEnumerable<ITextFormat> formats)
             : base(formats)
         {
-            var text = Format(GetValue(0, property, data));
+            var text = Format(GetValue(0, propertyName, data));
             ReplaceText = text?.ToString() ?? "";
         }
 

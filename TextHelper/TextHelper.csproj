@@ -63,6 +63,7 @@
     <Compile Include="TextParseService.cs" />
     <Compile Include="Text\EntityTextParse.cs" />
     <Compile Include="Text\NowTextParse.cs" />
+    <Compile Include="Text\ParameterTextParse.cs" />
     <Compile Include="Text\TextParse.cs" />
   </ItemGroup>
   <ItemGroup>
