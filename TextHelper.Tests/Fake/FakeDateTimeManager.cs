@@ -1,5 +1,5 @@
 using System;
-using TsaBackEndInfrastructure.Utils;
+using TextHelper.Interface;
 
 namespace TextHelper.Tests.Fake
 {

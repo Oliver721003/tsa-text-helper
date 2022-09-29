@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TextHelper.Interface;
-using TsaBackEndInfrastructure.Utils;
 
 namespace TextHelper.Text
 {
@@ -25,7 +24,7 @@ namespace TextHelper.Text
         /// </summary>
         /// <param name="formats">格式轉換</param>
         /// <param name="datetimeManager"></param>
-        public NowTextParse(IEnumerable<ITextFormat> formats, IDateTimeManager datetimeManager)
+        internal NowTextParse(IEnumerable<ITextFormat> formats, IDateTimeManager datetimeManager)
             : base(formats)
         {
             ReplaceText = Format(datetimeManager.Now).ToString();

@@ -43,9 +43,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TsaBackEndInfrastructure, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TsaBackEndInfrastructure.1.1.2.0\lib\net48\TsaBackEndInfrastructure.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\TextParserCollection.cs" />
@@ -57,6 +54,7 @@
     <Compile Include="Format\CurrencyFormat.cs" />
     <Compile Include="Format\DateFormat.cs" />
     <Compile Include="Format\TextFormat.cs" />
+    <Compile Include="Interface\IDateTimeManager.cs" />
     <Compile Include="Interface\ITextFormat.cs" />
     <Compile Include="Interface\ITextParse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,9 +63,6 @@
     <Compile Include="Text\NowTextParse.cs" />
     <Compile Include="Text\ParameterTextParse.cs" />
     <Compile Include="Text\TextParse.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
