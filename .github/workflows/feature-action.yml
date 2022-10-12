@@ -7,15 +7,20 @@ on:
 
 jobs:
   build:
+    name: Library Build
     runs-on: windows-latest
     env:
       REPOSITORY_URL: https://github.com/Oliver721003/tsa-text-helper
-      IMAGE_NAME: ${{ github.repository }}/alerta-cli
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
     steps:
       - uses: actions/checkout@v3.1.0
       - uses: NuGet/setup-nuget@v1.0.7
       - uses: microsoft/setup-msbuild@v1.1
+      - name: Package Restore
+        run: |
+          nuget restore
+      - name: Library Build
+        run: |
+          msbuild.exe /p:Configuration=Debug
 
       - name: Package Restore
         run: |
