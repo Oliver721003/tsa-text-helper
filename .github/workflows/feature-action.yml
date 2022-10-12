@@ -1,0 +1,30 @@
+name: Library Deploy
+
+on:
+  push:
+    branches:
+      - feature/*
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      REPOSITORY_URL: https://github.com/Oliver721003/tsa-text-helper
+      IMAGE_NAME: ${{ github.repository }}/alerta-cli
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: NuGet/setup-nuget@v1.0.5
+      - uses: microsoft/setup-msbuild@v1
+
+      - name: Package Restore
+        run: |
+          nuget restore
+
+      - name: Slack Notification
+        uses: act10ns/slack@v1.2.2
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: '#github'
+        if: always()
