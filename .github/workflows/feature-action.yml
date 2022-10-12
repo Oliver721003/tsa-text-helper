@@ -27,4 +27,13 @@ jobs:
       - name: Run Unit Testing
         run: |
           ./NUnit.ConsoleRunner.3.15.2/tools/nunit3-console.exe TextHelper.Tests/bin/Debug/TextHelper.Tests.dll
-
+      - name: Reformat Test Files (NUnit != JUnit)
+        run: |
+          sed -i 's/test-case/testcase/' TestResult.xml
+          sed -i 's/test-suite/testsuite/' TestResult.xml
+          sed -i 's/test-run/testsuite/' TestResult.xml
+      - uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: Unit Test Report
+          path: TestResult.xml
