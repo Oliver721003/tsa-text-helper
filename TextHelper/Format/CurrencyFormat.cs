@@ -23,6 +23,6 @@ namespace TextHelper.Format
         /// <param name="text">原格式物件</param>
         /// <returns></returns>
         public override string Format(object text)
-            => Convert.ToDecimal(text).ToString("C2", CultureInfo.CreateSpecificCulture(_format));
+            => Convert.ToDecimal(text).ToString("C2");
     }
 }

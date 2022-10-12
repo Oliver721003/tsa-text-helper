@@ -18,7 +18,7 @@ namespace TextHelper.Factory
         {
             var config = text.Split(':');
             var formatType = config[0].Trim();
-            var format = config[1].Trim();
+            var format = config.Length == 2 ? config[1].Trim() : "";
 
             var type = TextParserSettingFactory.GetTextFormat(formatType);
 

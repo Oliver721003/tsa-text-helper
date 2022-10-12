@@ -98,7 +98,7 @@ namespace TextHelper.Tests
             var data = new TestData { Id = "001", Name = "測試", Price = 1000 };
             var parameters = new Dictionary<string, string>();
 
-            var actual = target.Parse("動態資料: #[Id]# - #[Name]#, #[Price | currency:zh-TW ]#", data, parameters);
+            var actual = target.Parse("動態資料: #[Id]# - #[Name]#, #[Price | currency]#", data, parameters);
 
             actual.Should().Be("動態資料: 001 - 測試, $1,000.00");
         }
