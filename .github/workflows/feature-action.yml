@@ -21,10 +21,3 @@ jobs:
         run: |
           nuget restore
 
-      - name: Slack Notification
-        uses: act10ns/slack@v1.2.2
-        with:
-          status: ${{ job.status }}
-          steps: ${{ toJson(steps) }}
-          channel: '#github'
-        if: always()
