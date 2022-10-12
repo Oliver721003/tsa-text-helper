@@ -84,10 +84,10 @@
         <Compile Include="TextParseTests.cs" />
     </ItemGroup>
     <ItemGroup>
-      <None Include="packages.config" />
-      <None Include="textParser.config">
+      <None Include="App.config">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\TextHelper\TextHelper.csproj">
